@@ -2,7 +2,8 @@ from sklearn.metrics import f1_score, matthews_corrcoef
 import numpy as np
 from rouge import Rouge
 from src.utils import qa_utils
-from datasets import load_metric
+#from datasets import load_metric << deprecated
+import evaluate
 import re
 
 class App:
@@ -131,7 +132,8 @@ def acc_and_matthews_corrcoef(preds, labels):
 
 
 def compute_bleu(preds, labels):
-    BLEU = load_metric("bleu")
+    #BLEU = load_metric("bleu") << deprecated
+    BLEU = evaluate.load("bleu")
     predictions = [[ch for ch in text] for text in preds]
     references = [[[ch for ch in label]] for label in labels]
     return BLEU.compute(predictions=predictions, references=references)
