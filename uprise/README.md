@@ -28,6 +28,15 @@ In this section, we will introduce how to use our pre-trained retriever to impro
 Download the [retriever](https://drive.google.com/file/d/1fd6wYiP8LMRfM1f2oiFSn4t5jb_xLuo-/view?usp=share_link) tuned on all the tasks listed in Appendix A of [our paper](https://arxiv.org/abs/2303.08518), and the pre-constructed [prompt pool](https://drive.google.com/file/d/1NT3dYvheoFGnP3wTlGTJ9dyXj0-3hvTe/view?usp=share_link).
 
 After downloading the retriever and prompt pool, encode the prompt pool with the prompt encoder using the following command:
+
+### J's Version
+
+```bash
+#assuming prompt_pool and retriever in downloads folder
+bash pre_encode.sh
+```
+
+### Original Code
 ```bash
 export RETRIEVER=[DOWNLOADED_CKPT_PATH] # path to the downloaded retriever checkpoint
 export PROMPT_POOL=[DOWNLOADED_POOL_PATH] # path to the downloaded prompt pool
@@ -84,6 +93,12 @@ Note that you should name your metric function with a unique name and also use t
 ## 4. Run inference with LLMs
 UPRISE supports any LLM, such as ChatGPT, GPT-3, LLaMA, OPT, BLOOM and GPT-Neo, and you can test UPRISE on other LLMs with HuggingFace🤗 or OpenAI API.
 
+### J's Version modified with HuggingFace🤗
+```bash
+bash inference_hf.sh
+#eval.ipynb for upper bound
+```
+### Original Version 
 **LLMs available in HuggingFace🤗**
 
 To run inference with a LLM available in HuggingFace, use the following script:
