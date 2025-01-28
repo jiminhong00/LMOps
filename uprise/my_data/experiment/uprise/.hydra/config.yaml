@@ -1,0 +1,28 @@
+batch_size: 8
+model_name: EleutherAI/gpt-neo-2.7B
+output_file: /home/jmhong/PromptNetwork/LMOps/uprise/my_data/experiment/uprise/openbookqa_0Shot_pred.json
+res_file: /home/jmhong/PromptNetwork/LMOps/uprise/my_data/experiment/uprise/openbookqa_evaluation_res.txt
+prompt_file: /home/jmhong/PromptNetwork/LMOps/uprise/my_data/experiment/uprise/openbookqa_prompts_1shot.json
+max_length: 2048
+generate_max_len: 100
+n_tokens: 2048
+task_name: openbookqa
+prompt_pool_path: null
+num_prompts: 0
+random_sample: false
+cache_dir: /home/jmhong/PromptNetwork/LMOps/uprise/cache
+random_seed: 0
+train_clusters: null
+dataset_reader:
+  _target_: src.dataset_readers.few_shot_dsr.FewShotDatasetReader
+  model_name: ${model_name}
+  task_name: ${task_name}
+  prompt_file: ${prompt_file}
+  prompt_pool_path: ${prompt_pool_path}
+  num_prompts: ${num_prompts}
+  n_tokens: ${n_tokens}
+  random_sample: ${random_sample}
+  random_seed: ${random_seed}
+  cache_dir: ${cache_dir}
+  max_length: ${max_length}
+  train_clusters: ${train_clusters}

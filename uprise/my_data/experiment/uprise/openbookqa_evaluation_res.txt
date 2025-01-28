@@ -1,0 +1,3 @@
+retriever: uprise; model: EleutherAI/gpt-neo-2.7B; task_name: openbookqa; num_prompts: 1; scores: {'acc': 46.6}
+retriever: uprise; model: EleutherAI/gpt-neo-2.7B; task_name: openbookqa; num_prompts: 3; scores: {'acc': 49.8}
+retriever: uprise; model: EleutherAI/gpt-neo-2.7B; task_name: openbookqa; num_prompts: 0; scores: {'acc': 42.8}

@@ -49,7 +49,9 @@ def gen_ctx_vectors(
     bsz = cfg.batch_size
     total = 0
     results = []
+    logger.info("Encoding passages total: %d", n)
     for j, batch_start in enumerate(range(0, n, bsz)):
+        logger.info("Encoding passages %d : %d-%d", j, batch_start, batch_start + bsz)
         batch = ctx_rows[batch_start : batch_start + bsz]
         batch_token_tensors = [
             tensorizer.text_to_tensor(
@@ -57,18 +59,23 @@ def gen_ctx_vectors(
             )
             for ctx in batch
         ]
-
+        logger.info("Step 0 %d", j)
         ctx_ids_batch = move_to_device(
             torch.stack(batch_token_tensors, dim=0), cfg.device
         )
+        logger.info("Step 0.1 %d", j)
         ctx_seg_batch = move_to_device(torch.zeros_like(ctx_ids_batch), cfg.device)
+        logger.info("Step 0.2 %d", j)
         ctx_attn_mask = move_to_device(
             tensorizer.get_attn_mask(ctx_ids_batch), cfg.device
         )
+        logger.info("Step 0.3 %d", j)
         with torch.no_grad():
+            logger.info("no_grad %d", j)
             _, out, _ = model(ctx_ids_batch, ctx_seg_batch, ctx_attn_mask)
+        logger.info("Step 0.4 %d", j)  
         out = out.cpu()
-
+        logger.info("Step 1 %d", j)
         ctx_ids = [r[0] for r in batch]
         extra_info = []
         if len(batch[0]) > 3:
@@ -76,7 +83,7 @@ def gen_ctx_vectors(
 
         assert len(ctx_ids) == out.size(0)
         total += len(ctx_ids)
-
+        logger.info("Step 2 %d", j)
         # TODO: refactor to avoid 'if'
         if extra_info:
             results.extend(
@@ -149,18 +156,23 @@ def main(cfg: DictConfig):
     shard_size = math.ceil(len(all_passages) / cfg.num_shards)
     start_idx = cfg.shard_id * shard_size
     end_idx = start_idx + shard_size
-
+    print("idk")
     logger.info(
         "Producing encodings for passages range: %d to %d (out of total %d)",
         start_idx,
         end_idx,
         len(all_passages),
     )
+    print("something")
     shard_passages = all_passages[start_idx:end_idx]
-
+    print("something2")
+    logger.info("Total passages to process %d", len(shard_passages))
+    print(encoder)
     data = gen_ctx_vectors(cfg, shard_passages, encoder, tensorizer, True)
-
+    logger.info("Encoded passages %d", len(data))
+    
     file = cfg.out_file + "_" + str(cfg.shard_id)
+    logger.info("Writing results to %s" % file)
     pathlib.Path(os.path.dirname(file)).mkdir(parents=True, exist_ok=True)
     logger.info("Writing results to %s" % file)
     with open(file, mode="wb") as f:

@@ -127,3 +127,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# my_ignore
+uprise/downloads
+uprise/cache
+uprise/my_data/experiment/uprise/dpr_enc_index_0

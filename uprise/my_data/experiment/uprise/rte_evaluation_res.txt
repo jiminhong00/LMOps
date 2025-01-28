@@ -1,0 +1,7 @@
+retriever: uprise; model: EleutherAI/gpt-neo-2.7B; task_name: rte; num_prompts: 0; scores: {'acc': 33.935018050541515}
+retriever: uprise; model: EleutherAI/gpt-neo-2.7B; task_name: rte; num_prompts: 3; scores: {'acc': 64.25992779783394} // WRONG
+retriever: uprise; model: EleutherAI/gpt-neo-2.7B; task_name: rte; num_prompts: 1; scores: {'acc': 64.25992779783394}
+retriever: uprise; model: EleutherAI/gpt-neo-2.7B; task_name: rte; num_prompts: 3; scores: {'acc': 65.34296028880865}
+retriever: uprise; model: EleutherAI/gpt-neo-2.7B; task_name: rte; num_prompts: 1; scores: {'acc': 64.25992779783394}
+retriever: uprise; model: EleutherAI/gpt-neo-2.7B; task_name: rte; num_prompts: 0; scores: {'acc': 33.935018050541515}
+retriever: uprise; model: EleutherAI/gpt-neo-2.7B; task_name: rte; num_prompts: 1; scores: {'acc': 65.0485436893204}

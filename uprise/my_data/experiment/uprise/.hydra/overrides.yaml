@@ -1,0 +1,8 @@
+- prompt_file=/home/jmhong/PromptNetwork/LMOps/uprise/my_data/experiment/uprise/openbookqa_prompts_1shot.json
+- task_name=openbookqa
+- output_file=/home/jmhong/PromptNetwork/LMOps/uprise/my_data/experiment/uprise/openbookqa_0Shot_pred.json
+- res_file=/home/jmhong/PromptNetwork/LMOps/uprise/my_data/experiment/uprise/openbookqa_evaluation_res.txt
+- model_name=EleutherAI/gpt-neo-2.7B
+- cache_dir=/home/jmhong/PromptNetwork/LMOps/uprise/cache
+- num_prompts=0
+- batch_size=8

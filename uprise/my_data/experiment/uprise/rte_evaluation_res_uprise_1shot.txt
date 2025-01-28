@@ -1,0 +1,1 @@
+retriever: uprise; model: EleutherAI/gpt-neo-2.7B; task_name: rte; num_prompts: 1; scores: {'acc': 64.25992779783394}
